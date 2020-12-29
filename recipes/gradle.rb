@@ -17,7 +17,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'et_gradle'
+include_recipe 'ark'
+
+release_url = "#{node['exhibitor']['gradle']['release_url_prefix']}#{node['exhibitor']['gradle']['version']}" \
+              "#{node['exhibitor']['gradle']['release_url_suffix']}"
+
+ark node['exhibitor']['gradle']['name'] do
+  url         release_url
+  version     node['exhibitor']['gradle']['version']
+  prefix_home node['exhibitor']['gradle']['home_dir']
+  prefix_root node['exhibitor']['gradle']['home_dir']
+  has_binaries %w(bin/gradle)
+  action      :install
+end
 
 jar_path = "#{node['exhibitor']['install_dir']}/#{node['exhibitor']['version']}.jar"
 build_path = file_cache_path 'exhibitor'
@@ -30,7 +42,7 @@ end
 
 execute 'build exhibitor' do
   cwd     build_path
-  command "#{node['et_gradle']['home_dir']}/bin/gradle shadowJar"
+  command "#{node['exhibitor']['gradle']['home_dir']}/bin/gradle shadowJar"
   not_if  { File.exist? jar_path }
 end
 

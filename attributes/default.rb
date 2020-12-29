@@ -1,14 +1,12 @@
 # attributes/default.rb
 
 default['java']['jdk_version'] = '7'
+default['exhibitor']['java_home'] = node['java']['java_home']
 
 # Set Zookeeper to use Exhibitor as its service manager
 default['zookeeper']['service_style'] = 'exhibitor'
 default['exhibitor']['service_style'] = 'runit'
 default['exhibitor']['service_actions'] = [:enable, :start]
-
-# Gradle specifics for installation
-default['et_gradle']['version'] = '2.4'
 
 default['exhibitor']['zookeeper_version'] = node['zookeeper']['version']
 default['exhibitor']['version']        = '1.5.5'

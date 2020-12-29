@@ -1,0 +1,5 @@
+default['exhibitor']['gradle']['name'] = 'gradle'
+default['exhibitor']['gradle']['version'] = '2.4'
+default['exhibitor']['gradle']['home_dir'] = '/usr/local'
+default['exhibitor']['gradle']['release_url_prefix'] = 'http://services.gradle.org/distributions/gradle-'
+default['exhibitor']['gradle']['release_url_suffix'] = '-bin.zip'

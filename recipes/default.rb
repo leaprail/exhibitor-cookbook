@@ -20,11 +20,13 @@
 
 package node['exhibitor']['patch_package']
 
-zookeeper node['exhibitor']['zookeeper_version'] do
+zookeeper 'zookeeper-install-directory' do
+  version node['exhibitor']['zookeeper_version']
   username  node['exhibitor']['user']
   user_home "/home/#{node['exhibitor']['user']}"
-  install_dir node['zookeeper']['install_dir']
+  install_dir node['zookeeper']['install_dir'] if node['zookeeper']['mirror']
   mirror node['zookeeper']['mirror'] if node['zookeeper']['mirror']
+  use_java_cookbook node['zookeeper']['use_java_cookbook'] node['zookeeper']['use_java_cookbook']
 end
 
 [
