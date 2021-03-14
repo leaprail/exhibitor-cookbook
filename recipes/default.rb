@@ -26,7 +26,7 @@ zookeeper 'zookeeper-install-directory' do
   user_home "/home/#{node['exhibitor']['user']}"
   install_dir node['zookeeper']['install_dir'] if node['zookeeper']['mirror']
   mirror node['zookeeper']['mirror'] if node['zookeeper']['mirror']
-  use_java_cookbook node['zookeeper']['use_java_cookbook'] node['zookeeper']['use_java_cookbook']
+  use_java_cookbook node['zookeeper']['use_java_cookbook'] if node['zookeeper']['use_java_cookbook']
 end
 
 [
